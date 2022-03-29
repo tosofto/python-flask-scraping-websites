@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile_api
+    depends_on:
+      - mongo_db
+      - redis_server
+    environment:
+      REDIS_HOST: redis_server
+      MONGODB_HOST: mongo_db
+    networks:
+      - default
+    ports:
+      - 5000:5000
+    restart: always
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile_worker
+    depends_on:
+      - mongo_db
+      - redis_server
+      - api
+    environment:
+      REDIS_HOST: redis_server
+      MONGODB_HOST: mongo_db
+    networks:
+      - default
+    restart: always
+
+  mongo_db:
+    image: mongo
+    restart: always
+    volumes:
+      - /root/mongodb-data:/data/db
+    networks:
+      - default
+    ports:
+      - 27017:27017
+
+  redis_server:
+    image: redis
+    restart: always
+    networks:
+      - default

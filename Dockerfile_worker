@@ -1,0 +1,13 @@
+FROM python:3.8-slim
+LABEL maintainer="Nitin Kumar Chetwani <hnmn3.nitin@gmail.com>"
+
+WORKDIR /app
+COPY . .
+
+RUN pip install -r requirements.txt
+
+RUN chmod +x /app/docker_run_worker.sh
+
+# Run the start script, it will check for an /app/prestart.sh script (e.g. for migrations)
+# And then will start Gunicorn with Meinheld
+CMD ["/app/docker_run_worker.sh"]

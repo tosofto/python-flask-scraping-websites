@@ -1,0 +1,13 @@
+stores_env
+.idea
+__pycache__
+*pyc
+celerybeat-schedule*
+.env
+docker-app
+tests
+*ignore
+*yaml
+Dockerfile*
+README.md
+
