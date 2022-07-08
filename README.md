@@ -103,4 +103,4 @@ The API is configured as the above structure. Here store-key and domain-key para
 
 5. If it is the first time to scrap that store, then you will get the following JSON object of which status value is "Store menu scraping process is started!".
 
-6. If you want to see the scraping result, you have to click send button, once more. Then you can get the following result in the response field.
+6. If you want to see the scraping result, you have to click send button once more. Then you can get the following result in the response field.
